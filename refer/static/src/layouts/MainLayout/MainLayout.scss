@@ -1,0 +1,241 @@
+.pull-left {
+  float: left;
+}
+.pull-right {
+  float: right;
+}
+.hide {
+  display: none !important;
+}
+.show {
+  display: block !important;
+}
+
+.yy-layout-aside {
+  position: relative;
+  min-height: 100%;
+}
+
+@keyframes collapse{
+  from{
+      transform:rotate(0deg);
+  }     
+  to{
+      transform:rotate(360deg);
+  }
+} 
+
+@keyframes open{
+  from{
+      transform:rotate(0deg);
+  }     
+  to{
+      transform:rotate(-360deg);
+  }
+} 
+
+@keyframes fadeIn {
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from{
+    opacity: 1;
+  }
+  to{
+    opacity: 0;
+  }
+}
+
+.yy-layout-aside .yy-layout-logo {
+  width: 150px;
+  height: 40px;
+  margin: 16px 24px 16px 28px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  img {
+    margin: 4px;
+    float: left;
+    animation:collapse 1s linear 0s;
+  }
+  span {
+    font-size: 24px;
+    color: skyblue;
+    margin-left: 10px;
+    line-height: 40px;
+    animation:fadeIn 1s linear 0s;
+  }
+}
+
+.yy-layout-aside-collapse .yy-layout-logo {
+  width: 40px;
+  margin: 16px;
+  transition: all 0.3s ease;
+  img {
+    animation:open 1s linear 0s;
+  }
+  span {
+    animation:fadeOut 1s linear 0s;
+  }
+}
+
+.yy-layout-aside .yy-layout-sider {
+  width: 224px;
+  background: #404040;
+  position: fixed;
+  overflow: visible;
+  padding-bottom: 24px;
+  height: 100%;
+  transition: all 0.3s ease;
+}
+
+.yy-layout-aside-collapse .yy-layout-sider {
+  width: 64px;
+  transition: all 0.3s ease;
+  z-index: 99;
+}
+
+.yy-layout-aside .yy-layout-sider > .ant-menu {
+  margin-bottom: 20px;
+}
+
+.yy-layout-aside .yy-layout-sider > .ant-menu > .ant-menu-item {
+  margin: 16px 0;
+}
+
+.yy-layout-aside .yy-layout-sider > .ant-menu > .ant-menu-item .nav-text {
+  vertical-align: baseline;
+  display: inline-block;
+}
+
+.yy-layout-aside .yy-layout-sider > .ant-menu i.anticon {
+  transition: font-size .3s;
+}
+
+.yy-layout-aside-collapse .yy-layout-sider > .ant-menu i.anticon {
+  font-size: 16px;
+  display: inline-block;
+}
+
+.yy-layout-aside-collapse .yy-layout-sider > .ant-menu .nav-text {
+  display: none;
+}
+
+.yy-layout-aside-collapse .yy-layout-sider > .ant-menu a {
+  // display: none;
+  opacity: 0;
+}
+
+.yy-layout-aside-collapse .yy-memu-level1 > .ant-menu-submenu-title:after {
+  display: none;
+}
+
+.yy-layout-aside .yy-aside-action {
+  height: 42px;
+  width: 224px;
+  position: fixed;
+  bottom: 0;
+  background: #656565;
+  color: #fff;
+  text-align: center;
+  line-height: 42px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.yy-layout-aside-collapse .yy-aside-action {
+  width: 64px;
+  transition: all 0.3s ease;
+}
+
+.yy-aside-menu_item {
+  a {
+    display: inline-block;
+  }
+}
+
+.yy-layout-wrap {
+  padding: 0;
+  line-height: 1.5;
+  overflow: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #F7F7F7;
+}
+
+.yy-layout-aside .yy-layout-header {
+  background: #EDEDED;
+  height: 50px;
+  border-bottom: 1px solid #D9DEE4;
+  
+  .yy-sysname span{
+    line-height: 50px;
+    font-size: 25px;
+    margin-left: 20px;
+  }
+
+  .yy-profile {
+    .ant-dropdown-link {
+      display: block;
+      height: 50px;
+      line-height: 50px;
+      padding: 0 20px;
+      color: black;
+    }
+  }
+}
+
+// 顶部用户操作下拉列表去掉圆角
+.ant-dropdown-menu {
+  border-radius: 0px;
+  min-width: 160px;
+
+  i {
+    margin-top: 3px;
+  }
+}
+
+.yy-layout-aside .yy-layout-breadcrumb {
+  margin: 7px 0 -17px 24px;
+}
+
+.yy-layout-aside .yy-layout-main {
+  margin-left: 224px;
+  transition: all 0.3s ease;
+  padding-bottom: 30px;
+}
+
+.yy-layout-aside-collapse .yy-layout-main {
+  margin-left: 64px;
+  transition: all 0.3s ease;
+}
+
+.yy-layout-aside .yy-layout-container {
+  margin: 24px 16px;
+}
+
+.yy-layout-aside .yy-layout-content {
+  background: #fff;
+  padding: 24px;
+}
+
+.yy-layout-aside .yy-layout-footer {
+  height: 42px;
+  line-height: 42px;
+  text-align: center;
+  font-size: 12px;
+  color: #999;
+  background: #fff;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}
+

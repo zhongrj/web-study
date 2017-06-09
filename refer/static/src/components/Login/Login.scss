@@ -1,0 +1,42 @@
+
+.yy-login {
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    background-image: url('../../assets/login_bg.jpg');
+    background-size: cover;
+}
+
+.yy-login-form {
+	width: 500px;
+	position: relative;
+	left: 50%;
+	margin-top: 250px;
+	margin-left: -250px;
+	padding-top: 20px;
+	background-color: white;
+	border: 1px solid lightgray;
+	border-radius: 5px;
+	box-shadow: 3px 3px 6px -2px rgba(0,0,0,0.64);
+
+	.yy-login-form_wrap {
+		width: 80%;
+		margin: 0 auto;
+
+		.ant-alert {
+			margin-bottom: 20px
+		}
+		.yy-login-logo {
+			display: block;
+			margin: 10px auto 30px;
+		}
+		.yy-code-pic {
+			margin: 3px 10px 0px 10px;
+		}
+		.yy-code-anchor {
+			vertical-align: top;
+		}
+	}
+
+}

@@ -1,0 +1,20 @@
+{
+	"name": "web-study",
+	"version": "0.0.1",
+	"author": "zhongrj",
+	"description": "前端学习项目",
+	"keywords": ["node.js", "javascript"],
+	"license": "zhongrj",
+	"scripts": {
+		"test": "echo run test scripts",
+		"start": "node index.js",
+		"build": "webpack --config ./build/webpack.config.js"
+	},
+	"dependencies": {
+		"antd": "^2.5.1",
+    	"react": "^15.4.1"
+    },
+    "devDependencies":{
+    	"webpack": "^1.14.0"
+    }
+}

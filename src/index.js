@@ -1,3 +1,10 @@
-var a = {b : 123};
-console.log(a);
-console.log(123);
+import React from 'react';
+import {render} from 'react-dom';
+import { Router, Route, hashHistory } from 'react-router';
+import routes from "./routes/index";
+import './index.css';
+
+render(
+    <Router history={hashHistory} routes={routes} />,
+    document.getElementById('root')
+);

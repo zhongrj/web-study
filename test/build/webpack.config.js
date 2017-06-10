@@ -9,7 +9,7 @@ let CleanWebpackPlugin = require('clean-webpack-plugin');
 const PATHS = {
     src: path.resolve(__dirname, '../src'),
     dist: path.resolve(__dirname, '../dist'),
-    modules: path.resolve(__dirname, '../node_modules')
+    modules: path.resolve(__dirname, '../../node_modules')
 };
 
 

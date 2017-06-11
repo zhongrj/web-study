@@ -55,6 +55,11 @@ module.exports = {
             template: PATHS.src +  "/index.html",
             inject: true // 啥意思
         }),
+        new webpack.DefinePlugin({          // 不知道干嘛的，提示搞的
+            'process.env': {
+                NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+            },
+        }),
         new CleanWebpackPlugin(['dist'], {
             root: path.resolve(__dirname, '../'),
             verbose: true,

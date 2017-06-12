@@ -1,0 +1,46 @@
+
+$header-height: 80px;
+$sider-width: 180px;
+$footer-height: 40px;
+
+.zzone-layout{
+  padding: 0;
+  position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #f7f7f7;
+  overflow: auto;
+
+  padding-top: $header-height;
+  .zzone-layout-header{
+    width: 100%;
+    height: $header-height;
+    padding: 10px;
+    background: #ededed;
+    border-bottom: 1px solid #d9dee4;
+    position: fixed;
+    top: 0;
+  }
+
+  .zzone-layout-content{
+    padding: 20px;
+
+    .zzone-layout-container{
+      width: 1170px;
+      margin: 0 auto;
+      background: white;
+    }
+
+  }
+
+  .zzone-layout-footer{
+    width: 100%;
+    height: $footer-height;
+    line-height: $footer-height;
+    background: white;
+    text-align: center;
+  }
+
+}

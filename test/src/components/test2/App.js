@@ -1,18 +1,21 @@
 "use strict";
 import React, {Component} from 'react'
-import {Layout, Menu} from 'antd';
-const { Header, Sider, Content, Footer } = Layout;
+import {Layout} from 'antd';
+const {Header, Content, Footer} = Layout;
 
+import 'App.scss';
 
 class App extends Component {
     render() {
         return (
             <Layout>
-                <Header>header</Header>
+                <Header>
+                    header
+                </Header>
                 <Layout>
-                    <Sider>left sidebar</Sider>
+                    <Layout.Sider>left sidebar</Layout.Sider>
                     <Content>main content</Content>
-                    <Sider>right sidebar</Sider>
+                    <Layout.Sider>right sidebar</Layout.Sider>
                 </Layout>
                 <Footer>footer</Footer>
             </Layout>

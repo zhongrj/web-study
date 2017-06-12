@@ -1,0 +1,58 @@
+
+$header-height: 80px;
+$sider-width: 180px;
+$footer-height: 40px;
+
+.zzone-layout{
+  padding: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #f7f7f7;
+
+  .zzone-layout-header{
+    width: 100%;
+    height: $header-height;
+    padding: 10px;
+    background: #ededed;
+    border-bottom: 1px solid #d9dee4;
+    position: fixed;
+    top: 0;
+  }
+
+  .zzone-layout-body {
+    margin-top: $header-height;
+
+
+    .zzone-layout-sider{
+      width: $sider-width;
+      height: 100%;
+      background: #404040;
+      position: fixed;
+      left: 0;
+    }
+
+    .zzone-layout-content{
+      margin-left: $sider-width;
+
+      .zzone-layout-container{
+        margin: 20px 20px $footer-height+20px;
+        padding: 20px;
+        background: white;
+      }
+
+      .zzone-layout-footer{
+        width: 100%;
+        height: $footer-height;
+        line-height: $footer-height;
+        background: white;
+        text-align: center;
+        position: fixed;
+        bottom: 0;
+      }
+    }
+
+  }
+}

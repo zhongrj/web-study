@@ -1,6 +1,5 @@
 
-$header-height: 80px;
-$sider-width: 180px;
+$header-height: 50px;
 $footer-height: 40px;
 
 body{
@@ -10,7 +9,6 @@ body{
 
 
 .zzone-layout{
-  padding: 0;
   position: relative;
   top: 0;
   bottom: 0;
@@ -23,21 +21,15 @@ body{
   .zzone-layout-header{
     width: 100%;
     height: $header-height;
-    padding: 10px;
-    background: #ededed;
-    border-bottom: 1px solid #d9dee4;
+    line-height: $header-height;
+    background: #404040;
+    color: white;
     position: fixed;
     top: 0;
+
   }
 
   .zzone-layout-content{
-    padding: 20px;
-
-    .zzone-layout-container{
-      width: 1170px;
-      margin: 0 auto;
-      background: white;
-    }
 
   }
 

@@ -2,12 +2,13 @@
 
 import React from 'react';
 
-import './MainLayout.scss'
+import './Layout.scss'
 
 /**
  * Header
  */
 import {Row, Col} from 'antd';
+import HeaderUser from '../../components/user/HeaderUser';
 const Header = (props) => (
     <Row className="zzone-layout-header">
         <Col span={6}>
@@ -19,8 +20,8 @@ const Header = (props) => (
             <HeaderMenu {...props}/>
         </Col>
         <Col span={6}>
-            <div style={{float: 'right'}}>
-                User
+            <div style={{float: 'right', paddingRight: '10px'}}>
+                <HeaderUser />
             </div>
         </Col>
     </Row>
@@ -45,7 +46,7 @@ export default class MainLayout extends React.Component {
         return (
             <div className="zzone-layout">
 
-                <Header menu={this.props.menu} />
+                <Header menu={this.props.menu}/>
 
                 <div className="zzone-layout-content">
                     <div style={{height: 1200, width: 300}}>
@@ -53,7 +54,7 @@ export default class MainLayout extends React.Component {
                     </div>
                 </div>
 
-                <Footer footer={this.props.footer} />
+                <Footer footer={this.props.footer}/>
             </div>
         );
     }

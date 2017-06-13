@@ -1,0 +1,25 @@
+$font-color: white;
+
+.zzone-user {
+  color: $font-color;
+
+  > a {
+    color: $font-color;
+
+    &:hover {
+      color: $font-color;
+      text-decoration: none;
+    }
+
+    > span {
+      margin-right: 10px;
+    }
+  }
+
+}
+
+.zzone-user-menu{
+  li i{
+    margin-right: 8px;
+  }
+}

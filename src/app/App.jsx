@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import MainLayout from '../common/layouts/show/MainLayout';
+import MainLayout from '../common/layouts/show/Layout';
 import {Routes} from './Routes';
 
 import 'antd/dist/antd.css';

@@ -1,0 +1,21 @@
+.zzone-submain-layout {
+
+  .zzone-submain-layout-side {
+
+    float: left;
+    width: 20%;
+    @media screen and (min-width: 1200px) {
+      width: 15%;
+    }
+  }
+
+  .zzone-submain-layout-content {
+
+    float: left;
+    width: 80%;
+    @media screen and (min-width: 1200px) {
+      width: 85%;
+    }
+  }
+
+}

@@ -3,12 +3,9 @@
 import React from 'react';
 import {Menu, Icon} from 'antd';
 
-const {SubMenu, ItemGroup, Item} = Menu;
+const {SubMenu, Item} = Menu;
 
 import './SideMenu.scss';
-
-import {consoleMenu} from '../../../config/config';
-
 
 /**
  * menu的格式
@@ -38,17 +35,17 @@ import {consoleMenu} from '../../../config/config';
      }
  ]
  */
-
-const getMenu = (menu) => {
+const renderMenu = (menu) => {
     let result = [];
 
     for (let i in menu) {
         let sub = menu[i];
 
         if (sub.submenu) {
-            let submenu = getMenu(sub.submenu);
+            let submenu = renderMenu(sub.submenu);
             result.push(
                 <SubMenu
+                    key={ sub.key }
                     title={
                         <span>
                             { (sub.icon) ? <Icon type={sub.icon}/> : "" }
@@ -61,7 +58,7 @@ const getMenu = (menu) => {
             );
         } else {
             result.push(
-                <Item>
+                <Item key={ sub.path }>
                     <a href={ sub.path }>
                         { (sub.icon) ? <Icon type={sub.icon}/> : "" }
                         { sub.title }
@@ -74,18 +71,24 @@ const getMenu = (menu) => {
     return result;
 };
 
+const getOpenKeys = (location) => {
+    return location.split("/");
+};
+
 export default class SideMenu extends React.Component {
 
     render() {
 
-        let ConsoleMenu = getMenu(consoleMenu);
-
+        let MenuContent = renderMenu(this.props.menu);
         return (
             <Menu
                 className="zzone-sidemenu"
                 mode="inline"
+                defaultOpenKeys={ getOpenKeys(this.props.location) }
+                defaultSelectedKeys={ [this.props.location] }
+                style={this.props.style}
             >
-                { ConsoleMenu }
+                { MenuContent }
             </Menu>
         );
     }

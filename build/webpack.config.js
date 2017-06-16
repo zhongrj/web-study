@@ -28,10 +28,13 @@ module.exports = {
             {
                 test: /\.css$/,
                 loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' })
-            },
-            { test: /\.scss$/, loaders: 'style-loader!css-loader!sass-loader?sourceMap' },
-            // { test: /\.(png|jpg)$/, loaders: 'url-loader?limit=8192' },
-            {
+            }, {
+                test: /\.scss$/,
+                loaders: 'style-loader!css-loader!sass-loader?sourceMap'
+            }, {
+                test: /\.(png|jpg)$/,
+                loaders: 'url-loader?limit=8192&name=img/[name]-[hash:10].[ext]'
+            }, {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 loader: 'babel-loader',

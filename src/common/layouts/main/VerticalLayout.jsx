@@ -87,7 +87,7 @@ class HeaderMenu extends React.Component {
         for (let i in menu) {
             items.push(
                 <Menu.Item key={menu[i].path}>
-                    <a href={"#" + menu[i].path}><Icon type={menu[i].icon}/>{menu[i].text}</a>
+                    <a href={menu[i].path}><Icon type={menu[i].icon}/>{menu[i].text}</a>
                 </Menu.Item>
             );
         }

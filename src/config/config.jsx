@@ -1,47 +1,52 @@
 "use strict";
 
+
+let portalPath = '#/main/portal';
+let communityPath = '#/main/community';
+let consolePath = '#/main/console';
+
 export const menu = [
     {
-        path: '/portal',
+        path: portalPath,
         text: '首页',
         icon: 'home'
     },{
-        path: '/community',
+        path: communityPath,
         text: '社区',
         icon: 'team'
     },{
-        path: '/console',
+        path: consolePath,
         text: '管理',
         icon: 'mail'
     }
 ];
-
-let consolePath = '#/console';
 export const consoleMenu = [
     {
-        title: '一级1',
+        title: '主页管理',
+        icon: 'home',
+        key: 'portal',
         submenu: [
             {
-                title: '二级1',
+                title: 'Banner图',
                 icon: 'mail',
-                submenu: [
-                    {
-                        title: '三级1',
-                        path: `${consolePath}/3menu1`
-                    }, {
-                        title: '三级2',
-                        icon: 'mail',
-                        path: `${consolePath}/3menu2`
-                    }
-                ]
+                path: `${consolePath}/portal/banner`
             }, {
-                title: '二级2',
-                path: `${consolePath}/2menu2`
+                title: '其他管理',
+                icon: 'cloud',
+                path: `${consolePath}/portal/other`
             }
         ]
     }, {
-        title: '一级2',
-        path: `${consolePath}/1menu2`
+        title: '社区管理',
+        icon: 'team',
+        key: 'community',
+        submenu: [
+            {
+                title: '留言管理',
+                icon: 'book',
+                path: `${consolePath}/community/comment`
+            }
+        ]
     }
 ];
 

@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import './Layout.scss'
+import './VerticalLayout.scss'
 
 /**
  * Header
@@ -12,8 +12,10 @@ import HeaderUser from '../../components/user/HeaderUser';
 const Header = (props) => (
     <Row className="zzone-layout-header">
         <Col span={6}>
-            <div style={{float: 'right'}}>
-                Logo
+            <div style={{float: 'right', paddingRight: '10px'}}>
+                <span style={{fontSize: '14px'}}>
+                    Logo
+                </span>
             </div>
         </Col>
         <Col span={12}>
@@ -39,9 +41,9 @@ const Footer = (props) => (
 
 
 /**
- * MainLayout
+ * VerticalLayout
  */
-export default class MainLayout extends React.Component {
+export default class VerticalLayout extends React.Component {
     render() {
         return (
             <div className="zzone-layout">
@@ -49,9 +51,7 @@ export default class MainLayout extends React.Component {
                 <Header menu={this.props.menu}/>
 
                 <div className="zzone-layout-content">
-                    <div style={{height: 1200, width: 300}}>
-                        {this.props.children}
-                    </div>
+                    {this.props.children}
                 </div>
 
                 <Footer footer={this.props.footer}/>

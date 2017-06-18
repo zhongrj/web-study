@@ -1,9 +1,9 @@
 
-.zzone-login {
+.zzone-register {
 
   padding-top: 170px;
 
-  .zzone-login-bg {
+  .zzone-register-bg {
     background-image: url('img/blue.jpg');
     background-size: cover;
     height: 100%;
@@ -15,16 +15,16 @@
     z-index: -999;
   }
 
-  .zzone-login-content {
+  .zzone-register-content {
     width: 300px;
     margin: 0 auto;
 
-    .zzone-login-button {
+    .zzone-register-button {
       width: 100%;
 
     }
 
-    .zzone-login-help {
+    .zzone-register-help {
       width: 150px;
       text-align: center;
       margin: 0 auto;

@@ -1,10 +1,9 @@
 "use strict";
 
 import React from 'react';
-import {HashRouter, Route} from 'react-router-dom';
+import {HashRouter, Route, Redirect} from 'react-router-dom';
 import {Card} from 'antd';
-import HorizontalLayout from '../../common/layouts/submain/HorizontalLayout';
-import SideMenu from '../../common/components/menu/SideMenu';
+import {HorizontalLayout, SideMenu} from '../../common';
 
 import Banner from './Banner';
 
@@ -29,6 +28,7 @@ export default class Console extends React.Component {
                     }}>
                         <HashRouter basename="/main/console">
                             <div>
+                                <Route exact={true} path="/" component={()=>(<Redirect to="/portal/banner"/>)}/>
                                 <Route path="/portal/banner" component={Banner}/>
                             </div>
                         </HashRouter>

@@ -2,9 +2,8 @@
 
 import React from 'react';
 import {HashRouter, Route, Redirect} from 'react-router-dom';
+import {VerticalLayout, Login, Register} from '../common';
 import 'antd/dist/antd.css';
-import VerticalLayout from '../common/layouts/main/VerticalLayout';
-import Login from '../common/components/user/Login';
 
 import Portal from '../modules/portal';
 import Community from '../modules/community';
@@ -34,6 +33,7 @@ export default class App extends React.Component {
                 <div>
                     <Route exact={true} path="/" component={()=>(<Redirect to="/main"/>)}/>
                     <Route path="/login" component={Login}/>
+                    <Route path="/register" component={Register}/>
                     <Route path="/main" component={Main}/>
                 </div>
             </HashRouter>

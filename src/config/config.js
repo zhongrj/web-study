@@ -52,3 +52,8 @@ export const consoleMenu = [
 
 
 export const footer = 'CopyRight © 蠢蛋系统 - Power By zhongrj';
+
+export const baseModel = {
+    source: 'web',
+    macId: '123123'
+};

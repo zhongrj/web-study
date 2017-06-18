@@ -18,8 +18,8 @@ module.exports = {
         index: PATHS.src + "/index.js"
     },
     output: {
-        path: PATHS.dist + "/static",
-        filename: "[name].[hash].js",
+        path: PATHS.dist,
+        filename: "js/[name].[hash].js",
         // publicPath: 'static/',
         // chunkFilename: '[id].[chunkhash].js'
     },
@@ -55,9 +55,9 @@ module.exports = {
         }
     },
     plugins: [
-        new ExtractTextPlugin('styles.css'),
+        new ExtractTextPlugin('css/styles.css'),
         new HtmlWebpackPlugin({
-            filename: '../index.html',
+            filename: 'index.html',
             template: PATHS.src +  "/index.html",
             inject: true // 啥意思
         }),

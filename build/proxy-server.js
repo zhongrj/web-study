@@ -56,7 +56,6 @@ let server = http.createServer(function (req, res) {
     if (_url.indexOf('/static/') > -1) {
         _file = _url.match(/\/static(.*)/)[1];
         _ext = path.extname(_file);
-        console.log(_file);
 
         //转换成本地路径
         _localPath = config.output.path;
@@ -88,5 +87,5 @@ let server = http.createServer(function (req, res) {
 
 });
 
-console.log("Listening at http://localhost:3000");
+console.log("index: http://localhost:3000/static/index.html");
 server.listen(3000);

@@ -2,6 +2,8 @@
 
 import request from 'superagent';
 
+import {ajaxInterceptor} from '../config/Config';
+
 
 export default (options) => {
 
@@ -27,7 +29,8 @@ export default (options) => {
 
 
     const ajaxSuccess = (res) => {
-        success(res);
+        let body = ajaxInterceptor(res.body);
+        success(body);
     };
 
 

@@ -4,22 +4,23 @@ import React from 'react';
 import {Card, Form, Input, Button, Icon} from 'antd';
 const {Item} = Form;
 import {Ajax} from '../../../common';
+import {Url, getBaseModel} from '../../config/Config';
 
 import './Login.scss';
-
-
 
 class Login extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
+        let a = getBaseModel();
+        console.log(a);
+        a.a = {a: 1};
         this.props.form.validateFields((err, values) => {
             if (err) {
                 return false;
             }
-            console.log(values);
             Ajax({
-                url: '/login',
+                url: Url.LOGIN,
                 type: 'POST_JSON',
                 data: {
                     source: 'web',

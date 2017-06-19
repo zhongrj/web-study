@@ -1,13 +1,13 @@
 "use strict";
 
 import React from 'react';
-import {HashRouter, Route, Redirect} from 'react-router-dom';
+import {Route, Redirect} from 'react-router-dom';
 import {Card} from 'antd';
-import {HorizontalLayout, SideMenu} from '../../common';
+import {HorizontalLayout, SideMenu} from '../../../common/index';
 
 import Banner from './Banner';
 
-import {consoleMenu} from '../../config/config';
+import {LocationHash, consoleMenu} from '../../common/Global';
 
 export default class Console extends React.Component {
     render() {
@@ -26,12 +26,9 @@ export default class Console extends React.Component {
                         boxShadow: '0 0 0 white',
                         borderColor: '#e9e9e9'
                     }}>
-                        <HashRouter basename="/main/console">
-                            <div>
-                                <Route exact={true} path="/" component={()=>(<Redirect to="/portal/banner"/>)}/>
-                                <Route path="/portal/banner" component={Banner}/>
-                            </div>
-                        </HashRouter>
+                        <Route exact={true} path={LocationHash.console}
+                               component={() => (<Redirect to={LocationHash.console_banner}/>)}/>
+                        <Route path={LocationHash.console_banner} component={Banner}/>
                     </Card>
                 </HorizontalLayout>
             </div>

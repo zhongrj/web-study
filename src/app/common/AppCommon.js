@@ -13,18 +13,6 @@ export {getBaseModel, LocationHash, Code, Url, consoleMenu, headerMenu} from './
 
 
 /**
- * 会话对象
- */
-export {default as Session} from './Session';
-
-
-/**
  * 拦截器
  */
-export {ajaxInterceptor} from './Interceptor';
-
-
-/**
- * 公共服务
- */
-export {getUserInfo} from './Service';
+export {ajaxInterceptor, init, getUserInfo} from './Interceptor';

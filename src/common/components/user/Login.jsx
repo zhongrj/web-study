@@ -3,8 +3,8 @@
 import React from 'react';
 import {Card, Form, Input, Button, Icon} from 'antd';
 const {Item} = Form;
-import {Ajax} from '../../../common';
-import {Url, getBaseModel, Session, LocationHash} from '../../config/Config';
+import {Ajax, Session} from '../../../common';
+import {Url, getBaseModel, LocationHash} from '../../config/Config';
 
 import './Login.scss';
 
@@ -25,6 +25,7 @@ class Login extends React.Component {
                 success: (data) => {
                     document.cookie = "token=" + data.content.token;
                     Session.token = data.content.token;
+                    location.hash = LocationHash.index;
                 }
             });
         });

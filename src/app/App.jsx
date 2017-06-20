@@ -2,22 +2,19 @@
 
 import React from 'react';
 import {HashRouter, Route, Redirect} from 'react-router-dom';
-import {VerticalLayout, Login, Register, CookieUtils} from '../common';
+import {VerticalLayout, Login, Register} from '../common';
 import 'antd/dist/antd.css';
 
 import Portal from './modules/portal/portal';
 import Community from './modules/community/community';
 import Console from './modules/console/console';
 
-import {footer, LocationHash, headerMenu, Session} from './common/AppCommon';
+import {footer, LocationHash, headerMenu, init} from './common/AppCommon';
 
-const Main = () => (
-    <VerticalLayout menu={headerMenu} footer={footer} user={Session.user}>
+const Main = (props) => (
+    <VerticalLayout menu={headerMenu} footer={footer} user={props.user}>
         <HashRouter>
             <div>
-                {/*<Route exact={true} path="/">*/}
-                {/*<Redirect to="/portal"/>*/}
-                {/*</Route>*/}
                 <Route path={LocationHash.portal} component={Portal}/>
                 <Route path={LocationHash.community} component={Community}/>
                 <Route path={LocationHash.console} component={Console}/>
@@ -27,9 +24,13 @@ const Main = () => (
 );
 
 export default class App extends React.Component {
-    render() {
 
+    constructor(props) {
+        super(props);
         init();
+    }
+
+    render() {
 
         return (
             <HashRouter>
@@ -43,7 +44,3 @@ export default class App extends React.Component {
         );
     }
 }
-
-const init = () => {
-    Session.token = CookieUtils.get('token');
-};

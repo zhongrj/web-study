@@ -19,11 +19,11 @@ const Header = (props) => (
             </div>
         </Col>
         <Col span={12}>
-            <HeaderMenu {...props}/>
+            <HeaderMenu menu={props.menu}/>
         </Col>
         <Col span={6}>
             <div style={{float: 'right', paddingRight: '10px'}}>
-                <HeaderUser />
+                <HeaderUser/>
             </div>
         </Col>
     </Row>
@@ -48,7 +48,7 @@ export default class VerticalLayout extends React.Component {
         return (
             <div className="zzone-layout">
 
-                <Header menu={this.props.menu} user={this.props.user}/>
+                <Header menu={this.props.menu}/>
 
                 <div className="zzone-layout-content">
                     {this.props.children}

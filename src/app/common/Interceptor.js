@@ -1,16 +1,20 @@
 "use strict";
 
-import {CookieUtils} from '../../common';
+import {CookieUtils, Session} from '../../common';
 
-import {Code, LocationHash} from './Global';
-import Session from './Session';
+import {Code, LocationHash, Url} from './AppCommon';
 
+/**
+ * 响应拦截器
+ * @param resBody
+ * @param success
+ */
 export const ajaxInterceptor = (resBody, success) => {
     switch (resBody.code) {
 
         // 请求成功
         case Code.success:
-            success(body);
+            success(resBody);
             return;
 
         // 会话超时
@@ -22,5 +26,19 @@ export const ajaxInterceptor = (resBody, success) => {
             return;
 
     }
+
+};
+
+
+/**
+ * 项目初始化
+ */
+export const init = () => {
+
+    Session.token = CookieUtils.get('token');
+
+};
+
+export const getUserInfo = (component) => {
 
 };

@@ -5,6 +5,7 @@
  */
 export {default as Ajax} from './utils/Ajax';
 export {default as CookieUtils} from './utils/CookieUtils';
+export {Session, SessionUtils} from './utils/Session';
 
 /**
  * layouts

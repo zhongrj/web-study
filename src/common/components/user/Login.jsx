@@ -4,7 +4,7 @@ import React from 'react';
 import {Card, Form, Input, Button, Icon} from 'antd';
 const {Item} = Form;
 import {Ajax} from '../../../common';
-import {Url, getBaseModel} from '../../config/Config';
+import {Url, getBaseModel, Session, LocationHash} from '../../config/Config';
 
 import './Login.scss';
 
@@ -12,23 +12,19 @@ class Login extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        let a = getBaseModel();
-        console.log(a);
-        a.a = {a: 1};
         this.props.form.validateFields((err, values) => {
             if (err) {
                 return false;
             }
+            let model = getBaseModel();
+            model.user = values;
             Ajax({
-                url: Url.LOGIN,
+                url: Url.login,
                 type: 'POST_JSON',
-                data: {
-                    source: 'web',
-                    macId: '123123',
-                    user: values
-                },
+                data: model,
                 success: (data) => {
-                    console.log(data);
+                    document.cookie = "token=" + data.content.token;
+                    Session.token = data.content.token;
                 }
             });
         });
@@ -36,12 +32,17 @@ class Login extends React.Component {
 
     render() {
 
+        if (Session.token) {
+            location.hash = LocationHash.index;
+        }
+
         const {getFieldDecorator} = this.props.form;
 
         return (
             <div className="zzone-login">
 
                 <div className="zzone-login-bg"/>
+
 
                 <Card title="登录" className="zzone-login-content">
                     <Form className="zzone-login-form">

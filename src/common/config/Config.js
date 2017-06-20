@@ -1,4 +1,3 @@
 "use strict";
 
-export {getBaseModel, Url} from '../../app/common/Global';
-export {ajaxInterceptor} from '../../app/common/AjaxInterceptor';
+export {getBaseModel, Url, ajaxInterceptor, Session, LocationHash} from '../../app/common/AppCommon';

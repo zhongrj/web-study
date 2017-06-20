@@ -48,7 +48,7 @@ export default class VerticalLayout extends React.Component {
         return (
             <div className="zzone-layout">
 
-                <Header menu={this.props.menu}/>
+                <Header menu={this.props.menu} user={this.props.user}/>
 
                 <div className="zzone-layout-content">
                     {this.props.children}

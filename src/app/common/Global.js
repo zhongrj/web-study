@@ -15,8 +15,9 @@ export const getBaseModel = () => ({
  */
 const contextPath = '/';
 const Url = {
-    login                : 'login',                                                // 登录
-    register             : 'register'                                              // 注册
+    login                : 'core/user/login',                                                // 登录
+    register             : 'core/user/register',                                             // 注册
+    userinfo             : 'core/user/info',                                                 // 获取用户信息
 };
 for (let key in Url) {
     Url[key] = contextPath + Url[key];
@@ -28,6 +29,7 @@ export {Url};
  * 后台返回码
  */
 export const Code = {
+    success             :   '0000',
     unlogin             :   '9998',
     unauth              :   '9997'
 };

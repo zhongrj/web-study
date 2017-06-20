@@ -10,7 +10,7 @@ export default (options) => {
     const settings = {
         type: "GET",
         data: {},
-        headers: [],
+        headers: {},
         success: (res) => {
             console.log('request success...', res);
         },
@@ -29,31 +29,31 @@ export default (options) => {
 
 
     const ajaxSuccess = (res) => {
-        let body = ajaxInterceptor(res.body);
-        success(body);
+        ajaxInterceptor(res.body, success);
+    };
+
+    const setHeaders = (request, headers) => {
+        for (let key in headers) {
+            request.set(key, headers[key]);
+        }
     };
 
 
     if (type === 'GET') {
-        request
-            .get(url)
-            .query(data)
-            .then(ajaxSuccess, failure);
+        let r = request.get(url);
+        setHeaders(r, headers);
+        r.query(data).then(ajaxSuccess, failure);
     }
 
     else if (type === 'POST') {
-        let r = request
-            .post(url)
-            .type('form');
-        headers.map(header => r.set(header.key, header.val));
+        let r = request.post(url).type('form');
+        setHeaders(r, headers);
         r.send(data).then(ajaxSuccess, failure);
     }
 
     else if (type === 'POST_JSON') {
-        let r = request
-            .post(url)
-            .set('Content-Type', 'application/json');
-        headers.map(header => r.set(header.key, header.val));
+        let r = request.post(url).set('Content-Type', 'application/json');
+        setHeaders(r, headers);
         r.send(JSON.stringify(data)).then(ajaxSuccess, failure);
     }
 

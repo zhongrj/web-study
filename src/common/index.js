@@ -4,6 +4,7 @@
  * utils
  */
 export {default as Ajax} from './utils/Ajax';
+export {default as CookieUtils} from './utils/CookieUtils';
 
 /**
  * layouts

@@ -5,8 +5,7 @@ import {Dropdown, Avatar, Badge, Icon, Menu} from 'antd';
 
 import './HeaderUser.scss';
 
-import {Ajax, Session, SessionUtils} from '../../../common';
-import {Url, LocationHash} from '../../config/Config';
+import {LocationHash} from '../../config/Config';
 
 const UserMenu = (props) => (
     <Menu className="zzone-user-menu">
@@ -25,38 +24,9 @@ const UserMenu = (props) => (
 
 export default class HeaderUser extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            user: Session.user
-        };
-    }
-
-    logout() {
-        SessionUtils.logout();
-    }
-
-    componentDidMount() {
-        if (Session.token && !Session.user) {
-            Ajax({
-                url: Url.userinfo,
-                headers: {
-                    token: Session.token
-                },
-                success: (data) => {
-                    let user = data.content;
-                    Session.user = user;
-                    this.setState({
-                        user: user
-                    });
-                }
-            });
-        }
-    }
-
     render() {
 
-        if (!this.state.user) {
+        if (!this.props.user) {
             return (
                 <div className="zzone-user">
                     <a href={"#" + LocationHash.login}>请登录</a>
@@ -65,11 +35,11 @@ export default class HeaderUser extends React.Component {
         }
 
         return (
-            <Dropdown overlay={(<UserMenu logout={this.logout.bind(this)}/>)} trigger={['hover']}>
+            <Dropdown overlay={(<UserMenu logout={this.props.logout}/>)} trigger={['hover']}>
                 <div className="zzone-user">
                     <a href="javascript:void(0)">
                         <Badge dot={true}><Avatar icon="user"/></Badge>
-                        <span>{this.state.user.name}</span>
+                        <span>{this.props.user.name}</span>
                         <Icon type="down"/>
                     </a>
                 </div>

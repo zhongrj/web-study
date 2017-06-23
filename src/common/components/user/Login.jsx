@@ -3,37 +3,32 @@
 import React from 'react';
 import {Card, Form, Input, Button, Icon} from 'antd';
 const {Item} = Form;
-import {Ajax, Session} from '../../../common';
-import {Url, getBaseModel, LocationHash} from '../../config/Config';
+import CookieUtils from '../../utils/CookieUtils';
+import {LocationHash} from '../../config/Config';
 
 import './Login.scss';
 
 class Login extends React.Component {
 
-    handleSubmit(e) {
+    constructor(props){
+        super(props);
+
+        this.submit = this.submit.bind(this)
+    }
+
+    submit(e) {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (err) {
                 return false;
             }
-            let model = getBaseModel();
-            model.user = values;
-            Ajax({
-                url: Url.login,
-                type: 'POST_JSON',
-                data: model,
-                success: (data) => {
-                    document.cookie = "token=" + data.content.token;
-                    Session.token = data.content.token;
-                    location.hash = LocationHash.index;
-                }
-            });
+            this.props.login(values);
         });
     }
 
     render() {
 
-        if (Session.token) {
+        if (CookieUtils.get('token')) {
             location.hash = LocationHash.index;
         }
 
@@ -52,7 +47,7 @@ class Login extends React.Component {
                                 rules: [{required: true, message: '用户名不能为空'}],
                             })(
                                 <Input size="large" prefix={<Icon type="user" style={{fontSize: 13}}/>}
-                                       placeholder="用户名/手机号/邮箱"/>
+                                       placeholder="用户名/手机号/邮箱" onPressEnter={this.submit}/>
                             )}
                         </Item>
 
@@ -61,13 +56,13 @@ class Login extends React.Component {
                                 rules: [{required: true, message: '密码不能为空'}],
                             })(
                                 <Input size="large" prefix={<Icon type="lock" style={{fontSize: 13}}/>} type="password"
-                                       placeholder="密码"/>
+                                       placeholder="密码" onPressEnter={this.submit}/>
                             )}
                         </Item>
 
                         <Item>
                             <Button type="primary" className="zzone-login-button"
-                                    onClick={this.handleSubmit.bind(this)}>
+                                    onClick={this.submit}>
                                 登陆
                             </Button>
                             <div className="zzone-login-help">

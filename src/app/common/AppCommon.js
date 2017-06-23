@@ -9,10 +9,15 @@ export {footer} from './Config';
 /**
  * 全局变量
  */
-export {getBaseModel, LocationHash, Code, Url, consoleMenu, headerMenu} from './Global';
+export {LocationHash, Code, Url, consoleMenu, headerMenu} from './Config';
+
+/**
+ * 后台接口
+ */
+export {login, logout, getUserInfo} from './Service';
 
 
 /**
- * 拦截器
+ * 初始化方法
  */
-export {ajaxInterceptor, init, getUserInfo} from './Interceptor';
+export {default as init} from './Init';

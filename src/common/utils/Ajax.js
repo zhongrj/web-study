@@ -2,9 +2,6 @@
 
 import request from 'superagent';
 
-import {ajaxInterceptor} from '../config/Config';
-
-
 export default (options) => {
 
     const settings = {
@@ -28,10 +25,6 @@ export default (options) => {
         failure = opts.failure;
 
 
-    const ajaxSuccess = (res) => {
-        ajaxInterceptor(res.body, success);
-    };
-
     const setHeaders = (request, headers) => {
         for (let key in headers) {
             request.set(key, headers[key]);
@@ -42,19 +35,19 @@ export default (options) => {
     if (type === 'GET') {
         let r = request.get(url);
         setHeaders(r, headers);
-        r.query(data).then(ajaxSuccess, failure);
+        r.query(data).then(success, failure);
     }
 
     else if (type === 'POST') {
         let r = request.post(url).type('form');
         setHeaders(r, headers);
-        r.send(data).then(ajaxSuccess, failure);
+        r.send(data).then(success, failure);
     }
 
     else if (type === 'POST_JSON') {
         let r = request.post(url).set('Content-Type', 'application/json');
         setHeaders(r, headers);
-        r.send(JSON.stringify(data)).then(ajaxSuccess, failure);
+        r.send(JSON.stringify(data)).then(success, failure);
     }
 
 }

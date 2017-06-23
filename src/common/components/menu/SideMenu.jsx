@@ -48,7 +48,7 @@ const renderMenu = (menu) => {
                     key={ sub.key }
                     title={
                         <span>
-                            { (sub.icon) ? <Icon type={sub.icon}/> : "" }
+                            { (sub.icon) ? <Icon type={ sub.icon }/> : "" }
                             { sub.title }
                         </span>
                     }
@@ -60,35 +60,65 @@ const renderMenu = (menu) => {
             result.push(
                 <Item key={ sub.path }>
                     <a href={ sub.path }>
-                        { (sub.icon) ? <Icon type={sub.icon}/> : "" }
+                        { (sub.icon) ? <Icon type={ sub.icon }/> : "" }
                         { sub.title }
                     </a>
                 </Item>
-            )
+            );
+            title[sub.path] = sub.title;
         }
     }
 
     return result;
 };
 
-const getOpenKeys = (location) => {
-    return location.split("/");
-};
+const title = {};
 
 export default class SideMenu extends React.Component {
 
-    render() {
+    constructor(props) {
+        console.log("SideMenu constructor");
+        super(props);
+        this.state = {
+            openKeys: location.hash.split("/"),
+            selectKey: location.hash,
+        };
+    }
 
-        let MenuContent = renderMenu(this.props.menu);
+    onSelect({key}) {
+        this.setState({
+            openKeys: key.split("/"),
+            selectKey: key,
+        });
+        this.props.onSelect(title[key]);
+    }
+
+    onOpenChange(openKeys) {
+        this.setState({
+            openKeys: openKeys
+        });
+    }
+
+    componentDidMount() {
+        console.log("SideMenu componentDidMount");
+        this.onSelect({
+            key: location.hash
+        })
+    }
+
+    render() {
+        console.log("SideMenu render");
         return (
             <Menu
                 className="zzone-sidemenu"
-                mode="inline"
-                defaultOpenKeys={ getOpenKeys(this.props.location) }
-                defaultSelectedKeys={ [this.props.location] }
                 style={this.props.style}
+                mode="inline"
+                openKeys={this.state.openKeys}
+                selectedKeys={[this.state.selectKey]}
+                onOpenChange={this.onOpenChange.bind(this)}
+                onSelect={this.onSelect.bind(this)}
             >
-                { MenuContent }
+                {renderMenu(this.props.menu)}
             </Menu>
         );
     }

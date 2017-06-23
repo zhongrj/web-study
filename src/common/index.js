@@ -5,7 +5,6 @@
  */
 export {default as Ajax} from './utils/Ajax';
 export {default as CookieUtils} from './utils/CookieUtils';
-export {Session, SessionUtils} from './utils/Session';
 
 /**
  * layouts
@@ -21,3 +20,5 @@ export {default as SideMenu} from './components/menu/SideMenu';
 export {default as Login} from './components/user/Login';
 export {default as Register} from './components/user/Register';
 export {default as HeaderUser} from './components/user/HeaderUser';
+export {default as Banner} from './components/banner/Banner';
+

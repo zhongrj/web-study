@@ -19,11 +19,11 @@ const Header = (props) => (
             </div>
         </Col>
         <Col span={12}>
-            <HeaderMenu menu={props.menu}/>
+            <HeaderMenu menu={props.menu} user={props.user}/>
         </Col>
         <Col span={6}>
             <div style={{float: 'right', paddingRight: '10px'}}>
-                <HeaderUser/>
+                <HeaderUser user={props.user} logout={props.logout}/>
             </div>
         </Col>
     </Row>
@@ -44,11 +44,16 @@ const Footer = (props) => (
  * VerticalLayout
  */
 export default class VerticalLayout extends React.Component {
+    constructor(props){
+        super(props);
+        // 校验props
+    }
+
     render() {
         return (
             <div className="zzone-layout">
 
-                <Header menu={this.props.menu}/>
+                <Header menu={this.props.menu} user={this.props.user} logout={this.props.logout}/>
 
                 <div className="zzone-layout-content">
                     {this.props.children}
@@ -68,33 +73,21 @@ import {Menu, Icon} from 'antd';
 
 class HeaderMenu extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            current: props.menu[0].path
-        };
-    }
-
-    handleClick(e) {
-        this.setState({
-            current: e.key,
-        });
-    }
-
     render() {
         let menu = this.props.menu,
             items = [];
         for (let i in menu) {
+            let item = menu[i];
+            if (item.auth && !this.props.user) continue;
             items.push(
-                <Menu.Item key={menu[i].path}>
-                    <a href={menu[i].path}><Icon type={menu[i].icon}/>{menu[i].text}</a>
+                <Menu.Item key={item.path}>
+                    <a href={item.path}><Icon type={item.icon}/>{item.text}</a>
                 </Menu.Item>
             );
         }
         return (
             <Menu
-                onClick={this.handleClick.bind(this)}
-                selectedKeys={[this.state.current]}
+                selectedKeys={location.hash.match(/^#\/main\/[^\/]*/)}
                 mode="horizontal"
                 theme="dark"
                 style={{

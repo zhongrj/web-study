@@ -77,7 +77,6 @@ const title = {};
 export default class SideMenu extends React.Component {
 
     constructor(props) {
-        console.log("SideMenu constructor");
         super(props);
         this.state = {
             openKeys: location.hash.split("/"),
@@ -100,14 +99,12 @@ export default class SideMenu extends React.Component {
     }
 
     componentDidMount() {
-        console.log("SideMenu componentDidMount");
         this.onSelect({
             key: location.hash
         })
     }
 
     render() {
-        console.log("SideMenu render");
         return (
             <Menu
                 className="zzone-sidemenu"

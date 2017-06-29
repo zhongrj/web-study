@@ -11,6 +11,9 @@ import BBS from './BBS';
 export default class Community extends React.Component {
 
     render() {
+        if (!this.props.user) {
+            return (<div/>);
+        }
         return (
             <div style={{
                 margin: '20px'

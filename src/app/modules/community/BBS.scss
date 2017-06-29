@@ -1,46 +1,57 @@
 .zzone-community-bbs {
-  height: 700px;
+  min-height: 700px;
 
   > .ant-tabs-bar {
     display: none;
   }
 
-  .zzone-community-bbs-title {
-    border-bottom: 1px solid #BBBDBF;
-    font-size: 16px;
-    padding-bottom: 2px;
+  > .ant-tabs-content > .ant-tabs-tabpane > .zzone-community-bbs-comment {
 
-    > span {
-      margin-left: 5px;
+    > .zzone-community-bbs-comment-title {
+      border-bottom: 1px solid #BBBDBF;
+      font-size: 16px;
+      padding-bottom: 2px;
+
+      > span {
+        margin-left: 5px;
+      }
     }
-  }
 
-  > .ant-tabs-content > .ant-tabs-tabpane {
-    > table {
-      width: 100%;
-      border-collapse: collapse;
+    > .zzone-community-bbs-comment-list {
+      background: #fafbfc;
 
-      > tbody > tr {
+      > .zzone-community-bbs-comment-row {
+        position: relative;
+        padding-left: 130px;
         border-bottom: 1px solid #E1E4E6;
 
-        > td:first-child {
-          background: #fafbfc;
-          position: relative;
-          padding: 65px;
-          > div {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-          }
+        > .zzone-community-bbs-comment-avatar {
+          position: absolute;
+          top: 15px;
+          left: 15px;
+          width: 100px;
+          height: 100px;
+          background: gainsboro;
         }
-        > td:nth-child(2) {
+
+        > .zzone-community-bbs-comment-username {
+          position: absolute;
+          left: 0px;
+          top: 120px;
+          width: 130px;
+          text-align: center;
+        }
+
+        > .zzone-community-bbs-comment-content {
+          background: white;
+          min-height: 160px;
           padding: 10px;
           font-size: 14px;
         }
       }
     }
 
-    > div.zzone-community-bbs-comment {
+    > div.zzone-community-bbs-comment-form {
       background: #f3f3f3;
       padding: 20px;
     }

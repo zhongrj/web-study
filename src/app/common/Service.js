@@ -24,19 +24,19 @@ const service = (url, values, success) => {
         },
         data: model,
         success: (response) => {
-            let body = response.body;
+            let data = response.body;
 
-            switch (body.code) {
+            switch (data.code) {
 
                 // 请求成功
                 case Code.success:
-                    success(response.body.content);
+                    success(data);
                     break;
 
                 // 错误提示
                 case Code.failure:
-                    console.log(body);
-                    message.error(body.msg);
+                    console.log(data);
+                    message.error(data.msg);
                     break;
 
                 // 会话超时
@@ -51,27 +51,32 @@ const service = (url, values, success) => {
     });
 };
 
-export const login = (values, success) => {
-    service(Url.login, {
-        user: values
-    }, success);
+export const Service = {
+    login: (values, success) => {
+        service(Url.login, {
+            user: values
+        }, success);
+    },
+    logout: () => {
+        service(Url.logout, {}, () => {
+        });
+    },
+    getUserInfo: (success) => {
+        service(Url.userinfo, {}, success);
+    },
+    post: (values, success) => {
+        service(Url.post, values, success);
+    },
+    postList: (values, success) => {
+        service(Url.postList, values, success);
+    },
+    commentList: (values, success) => {
+        service(Url.commentList, values, success);
+    },
+    comment: (values, success) => {
+        service(Url.comment, values, success);
+    }
 };
-
-export const logout = () => {
-    service(Url.logout, {}, () => {
-    });
-};
-
-
-export const getUserInfo = (success) => {
-    service(Url.userinfo, {}, success);
-};
-
-
-
-
-
-
 
 
 

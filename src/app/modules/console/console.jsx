@@ -10,8 +10,6 @@ import Banner from './Banner';
 
 export default class Console extends React.Component {
     render() {
-        console.log('Console render');
-
         if (!this.props.user) {
             return (<div/>);
         }

@@ -9,20 +9,21 @@ import Portal from './modules/portal/portal';
 import Community from './modules/community/community';
 import Console from './modules/console/console';
 
-import {footer, LocationHash, headerMenu, login, logout, getUserInfo} from './common/AppCommon';
+import {footer, LocationHash, headerMenu, Service} from './common/AppCommon';
 
-const Main = (props) => {
-    console.log('Main render');
+
+const Main = ({user, logout}) => {
     return (
-        <VerticalLayout menu={headerMenu} user={props.user} logout={props.logout} footer={footer}>
+        <VerticalLayout menu={headerMenu} user={user} logout={logout} footer={footer}>
             <Route exact={true} path={LocationHash.index}
                    component={() => <Redirect to={LocationHash.portal}/>}/>
-            <Route path={LocationHash.portal} component={Portal}/>
-            <Route path={LocationHash.community} component={() => <Community user={props.user}/>}/>
-            <Route path={LocationHash.console} component={() => <Console user={props.user}/>}/>
+            <Route path={LocationHash.portal} component={() => <Portal/>}/>
+            <Route path={LocationHash.community} component={() => <Community user={user}/>}/>
+            <Route path={LocationHash.console} component={() => <Console user={user}/>}/>
         </VerticalLayout>
     );
 };
+
 
 export default class App extends React.Component {
 
@@ -34,16 +35,17 @@ export default class App extends React.Component {
 
         this.login = this.login.bind(this);
         if (CookieUtils.get('token')) {
-            getUserInfo(((user) => {
+            Service.getUserInfo(((data) => {
                 this.setState({
-                    user: user
+                    user: data.content
                 });
             }).bind(this));
         }
     }
 
     login(values) {
-        login(values, ((user) => {
+        Service.login(values, ((data) => {
+            let user = data.content;
             CookieUtils.set('token', user.token);
             this.setState({
                 user: user
@@ -53,7 +55,7 @@ export default class App extends React.Component {
     }
 
     logout() {
-        logout();
+        Service.logout();
         CookieUtils.del('token');
         this.setState({
             user: null
@@ -62,15 +64,14 @@ export default class App extends React.Component {
     }
 
     render() {
-        console.log('App render');
+        let {user} = this.state;
         return (
             <HashRouter>
                 <div>
                     <Route exact={true} path="/" component={() => <Redirect to={LocationHash.index}/>}/>
                     <Route path={LocationHash.login} component={() => <Login login={this.login}/>}/>
-                    <Route path={LocationHash.register} component={Register}/>
-                    <Route path={LocationHash.index}
-                           component={() => <Main user={this.state.user} logout={this.logout.bind(this)}/>}/>
+                    <Route path={LocationHash.register} component={() => <Register/>}/>
+                    <Route path={LocationHash.index} component={() => <Main user={user} logout={this.logout.bind(this)}/>}/>
                 </div>
             </HashRouter>
         );

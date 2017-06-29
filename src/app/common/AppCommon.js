@@ -14,7 +14,7 @@ export {LocationHash, Code, Url, consoleMenu, headerMenu} from './Config';
 /**
  * 后台接口
  */
-export {login, logout, getUserInfo} from './Service';
+export {Service} from './Service';
 
 
 /**

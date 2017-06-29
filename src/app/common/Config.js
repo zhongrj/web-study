@@ -14,6 +14,10 @@ const Url = {
     logout               : 'core/user/logout',                                               // 登出
     register             : 'core/user/register',                                             // 注册
     userinfo             : 'core/user/info',                                                 // 获取用户信息
+    post                 : 'community/post',                                                 // 发贴
+    postList             : 'community/postList',                                             // 获取发贴列表
+    commentList          : 'community/commentList',                                          // 获取评论列表
+    comment              : 'community/comment',                                              // 评论
 };
 for (let key in Url) {
     Url[key] = contextPath + Url[key];
@@ -68,7 +72,8 @@ export const headerMenu = [
     }, {
         path: LocationHashTemp.community,
         text: '社区',
-        icon: 'team'
+        icon: 'team',
+        auth: true
     }, {
         path: LocationHashTemp.console,
         text: '管理',

@@ -65,26 +65,22 @@ export const LocationHash = {
 /**
  * header菜单
  */
-let LocationHashTemp = {};
-for(let key in LocationHash) {
-    LocationHashTemp[key] = LocationHash[key];
-}
 export const headerMenu = [
     {
-        path: LocationHashTemp.portal,
+        path: LocationHash.portal,
         text: '首页',
         icon: 'home'
     }, {
-        path: LocationHashTemp.community,
+        path: LocationHash.community,
         text: '社区',
         icon: 'team'
     }, {
-        path: LocationHashTemp.console,
+        path: LocationHash.console,
         text: '管理',
         icon: 'mail',
         auth: true
     }, {
-        path: LocationHashTemp.user,
+        path: LocationHash.user,
         text: '个人',
         icon: 'user',
         auth: true
@@ -104,11 +100,11 @@ export const consoleMenu = [
             {
                 title: 'Banner图',
                 icon: 'mail',
-                path: LocationHashTemp.console_banner
+                path: LocationHash.console_banner
             }, {
                 title: '其他管理',
                 icon: 'cloud',
-                path: LocationHashTemp.console_other
+                path: LocationHash.console_other
             }
         ]
     }, {
@@ -119,7 +115,7 @@ export const consoleMenu = [
             {
                 title: '留言管理',
                 icon: 'book',
-                path: LocationHashTemp.console_comment
+                path: LocationHash.console_comment
             }
         ]
     }
@@ -130,7 +126,7 @@ export const communityMenu = [
     {
         title: '论坛',
         icon: 'home',
-        path: LocationHashTemp.community_bbs
+        path: LocationHash.community_bbs
     }
 ];
 
@@ -139,10 +135,10 @@ export const userMenu = [
     {
         title: '个人资料',
         icon: 'user',
-        path: LocationHashTemp.info
+        path: LocationHash.info
     }, {
         title: '修改密码',
         icon: 'user',
-        path: LocationHashTemp.password
+        path: LocationHash.password
     }
 ];

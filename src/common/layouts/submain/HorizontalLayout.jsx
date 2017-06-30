@@ -17,10 +17,13 @@ export default class HorizontalLayout extends React.Component {
     }
 
     render() {
+        let {location, menu} = this.props;
+        let {title} = this.state;
+
         return (
             <Row className="zzone-submain-layout">
                 <div className="zzone-submain-layout-side">
-                    <SideMenu menu={this.props.menu} onSelect={((title) => {
+                    <SideMenu location={location} menu={menu} onSelect={((title) => {
                         this.setState({
                             title: title
                         });
@@ -28,7 +31,7 @@ export default class HorizontalLayout extends React.Component {
                 </div>
 
                 <div className="zzone-submain-layout-content">
-                    <Card title={this.state.title} style={{
+                    <Card title={title} style={{
                         boxShadow: '0 0 0 white',
                         borderColor: '#e9e9e9'
                     }}>

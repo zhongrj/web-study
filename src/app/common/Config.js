@@ -53,6 +53,11 @@ export const LocationHash = {
     console_banner      :    '/main/console/portal/banner',                       // banner管理
     console_other       :    '/main/console/portal/other',                        // 主页其他管理
     console_comment     :    '/main/console/community/comment',                   // 留言管理
+
+    user                :    '/main/user',                                        // 个人模块
+    info                :    '/main/user/info',                                   // 个人信息
+    password            :    '/main/user/password',                               // 修改密码
+
 };
 
 
@@ -62,7 +67,7 @@ export const LocationHash = {
  */
 let LocationHashTemp = {};
 for(let key in LocationHash) {
-    LocationHashTemp[key] = '#' + LocationHash[key];
+    LocationHashTemp[key] = LocationHash[key];
 }
 export const headerMenu = [
     {
@@ -72,12 +77,16 @@ export const headerMenu = [
     }, {
         path: LocationHashTemp.community,
         text: '社区',
-        icon: 'team',
-        auth: true
+        icon: 'team'
     }, {
         path: LocationHashTemp.console,
         text: '管理',
         icon: 'mail',
+        auth: true
+    }, {
+        path: LocationHashTemp.user,
+        text: '个人',
+        icon: 'user',
         auth: true
     }
 ];
@@ -122,5 +131,18 @@ export const communityMenu = [
         title: '论坛',
         icon: 'home',
         path: LocationHashTemp.community_bbs
+    }
+];
+
+
+export const userMenu = [
+    {
+        title: '个人资料',
+        icon: 'user',
+        path: LocationHashTemp.info
+    }, {
+        title: '修改密码',
+        icon: 'user',
+        path: LocationHashTemp.password
     }
 ];

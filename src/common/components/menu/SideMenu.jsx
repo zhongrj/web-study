@@ -1,6 +1,7 @@
 "use strict";
 
 import React from 'react';
+import {Link} from 'react-router-dom';
 import {Menu, Icon} from 'antd';
 
 const {SubMenu, Item} = Menu;
@@ -59,10 +60,10 @@ const renderMenu = (menu) => {
         } else {
             result.push(
                 <Item key={ sub.path }>
-                    <a href={ sub.path }>
+                    <Link to={ sub.path }>
                         { (sub.icon) ? <Icon type={ sub.icon }/> : "" }
                         { sub.title }
-                    </a>
+                    </Link>
                 </Item>
             );
             title[sub.path] = sub.title;
@@ -78,16 +79,19 @@ export default class SideMenu extends React.Component {
 
     constructor(props) {
         super(props);
+        let location = props.location;
         this.state = {
-            openKeys: location.hash.split("/"),
-            selectKey: location.hash,
+            openKeys: location.split("/"),
+            selectedKey: location
         };
+        this.onSelect = this.onSelect.bind(this);
+        this.onOpenChange = this.onOpenChange.bind(this);
     }
 
     onSelect({key}) {
         this.setState({
             openKeys: key.split("/"),
-            selectKey: key,
+            selectedKey: key
         });
         this.props.onSelect(title[key]);
     }
@@ -98,22 +102,26 @@ export default class SideMenu extends React.Component {
         });
     }
 
-    componentDidMount() {
-        this.onSelect({
-            key: location.hash
-        })
+    componentWillUpdate(nextProps) {
+        if (this.props.location !== nextProps.location){
+            this.onSelect({
+                key: nextProps.location
+            })
+        }
     }
 
     render() {
+        let {openKeys, selectedKey} = this.state;
+
         return (
             <Menu
                 className="zzone-sidemenu"
                 style={this.props.style}
                 mode="inline"
-                openKeys={this.state.openKeys}
-                selectedKeys={[this.state.selectKey]}
-                onOpenChange={this.onOpenChange.bind(this)}
-                onSelect={this.onSelect.bind(this)}
+                openKeys={openKeys}
+                selectedKeys={[selectedKey]}
+                onSelect={this.onSelect}
+                onOpenChange={this.onOpenChange}
             >
                 {renderMenu(this.props.menu)}
             </Menu>

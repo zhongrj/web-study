@@ -44,7 +44,7 @@ const Footer = (props) => (
  * VerticalLayout
  */
 export default class VerticalLayout extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         // 校验props
     }
@@ -69,6 +69,7 @@ export default class VerticalLayout extends React.Component {
 /**
  * HeaderMenu
  */
+import {Link} from 'react-router-dom';
 import {Menu, Icon} from 'antd';
 
 class HeaderMenu extends React.Component {
@@ -81,13 +82,12 @@ class HeaderMenu extends React.Component {
             if (item.auth && !this.props.user) continue;
             items.push(
                 <Menu.Item key={item.path}>
-                    <a href={item.path}><Icon type={item.icon}/>{item.text}</a>
+                    <Link to={item.path}><Icon type={item.icon}/>{item.text}</Link>
                 </Menu.Item>
             );
         }
         return (
             <Menu
-                selectedKeys={location.hash.match(/^#\/main\/[^\/]*/)}
                 mode="horizontal"
                 theme="dark"
                 style={{

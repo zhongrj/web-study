@@ -13,18 +13,27 @@ export default class BBS extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            tab: '1',
+            tab: 'postList',
             pageNo: 1,
             pageSize: 5,
             page: null,
             loading: false,
             post: null,
         };
+        this.onBack = this.onBack.bind(this);
         this.onSelect = this.onSelect.bind(this);
         this.onClick = this.onClick.bind(this);
-        this.onBack = this.onBack.bind(this);
         this.getPostList = this.getPostList.bind(this);
         this.pageChange = this.pageChange.bind(this);
+    }
+
+    onBack() {
+        this.setState({
+            tab: 'postList',
+            page: null,
+            post: null
+        });
+        this.getPostList();
     }
 
     onSelect(e) {
@@ -32,7 +41,7 @@ export default class BBS extends React.Component {
         let id = e.target.dataset.id,
             title = e.target.dataset.title;
         this.setState({
-            tab: '2',
+            tab: 'commentList',
             post: {
                 id: id,
                 title: title
@@ -42,17 +51,8 @@ export default class BBS extends React.Component {
 
     onClick() {
         this.setState({
-            tab: '3'
+            tab: 'postForm'
         });
-    }
-
-    onBack() {
-        this.setState({
-            tab: '1',
-            page: null,
-            post: null
-        });
-        this.getPostList(this.state.pageNo, this.state.pageSize);
     }
 
     getPostList() {
@@ -82,6 +82,28 @@ export default class BBS extends React.Component {
         this.getPostList();
     }
 
+    getColumns() {
+        return [{
+            key: 'title',
+            dataIndex: 'title',
+            title: '标题',
+            render: (text, record) => {
+                return (
+                    <a href="javascript:void(0)" data-id={record.id} data-title={record.title}
+                       onClick={this.onSelect}>{text}</a>
+                );
+            }
+        }, {
+            key: 'user.name',
+            dataIndex: 'user.name',
+            title: '作者'
+        }, {
+            key: 'commentCount',
+            dataIndex: 'commentCount',
+            title: '评论',
+        }];
+    }
+
     componentDidMount() {
         this.getPostList();
     }
@@ -94,29 +116,29 @@ export default class BBS extends React.Component {
             <Tabs activeKey={tab} className="zzone-community-bbs">
 
 
-                <Tabs.TabPane tab="Tab 1" key="1">
+                <Tabs.TabPane tab="postList" key="postList">
                     <Button type="primary" style={{width: '100%'}} onClick={this.onClick}>
                         发贴
                     </Button>
                     <Table
                         loading={loading}
                         dataSource={page ? page.list : null}
-                        columns={getColumns(this.onSelect)}
+                        columns={this.getColumns()}
                         pagination={page ? {
                             total: page.total,
                             onChange: this.pageChange,
-                            defaultPageSize: pageSize
+                            pageSize: pageSize
                         } : false}
                     />
                 </Tabs.TabPane>
 
 
-                <Tabs.TabPane tab="Tab 2" key="2">
+                <Tabs.TabPane tab="commentList" key="commentList">
                     <CommentTab post={post} onBack={this.onBack}/>
                 </Tabs.TabPane>
 
 
-                <Tabs.TabPane tab="Tab 3" key="3">
+                <Tabs.TabPane tab="postForm" key="postForm">
                     <PostForm onBack={this.onBack}/>
                 </Tabs.TabPane>
 
@@ -125,25 +147,6 @@ export default class BBS extends React.Component {
         );
     }
 };
-
-const getColumns = (onSelect) => [{
-    key: 'title',
-    dataIndex: 'title',
-    title: '标题',
-    render: (text, record) => {
-        return (
-            <a href="javascript:void(0)" data-id={record.id} data-title={record.title} onClick={onSelect}>{text}</a>
-        );
-    }
-}, {
-    key: 'user.name',
-    dataIndex: 'user.name',
-    title: '作者'
-}, {
-    key: 'commentCount',
-    dataIndex: 'commentCount',
-    title: '评论',
-}];
 
 
 class CommentTab extends React.Component {

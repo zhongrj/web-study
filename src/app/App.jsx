@@ -2,12 +2,13 @@
 
 import React from 'react';
 import {HashRouter, Route, Redirect} from 'react-router-dom';
-import {VerticalLayout, Login, Register, CookieUtils} from '../common';
+import {VerticalLayout, Login, Register, MyRoute, CookieUtils} from '../common';
 import 'antd/dist/antd.css';
 
-import Portal from './modules/portal/portal';
-import Community from './modules/community/community';
-import Console from './modules/console/console';
+import Portal from './modules/portal/Portal';
+import Community from './modules/community/Community';
+import Console from './modules/console/Console';
+import User from './modules/user/User';
 
 import {footer, LocationHash, headerMenu, Service} from './common/AppCommon';
 
@@ -17,9 +18,10 @@ const Main = ({user, logout}) => {
         <VerticalLayout menu={headerMenu} user={user} logout={logout} footer={footer}>
             <Route exact={true} path={LocationHash.index}
                    component={() => <Redirect to={LocationHash.portal}/>}/>
-            <Route path={LocationHash.portal} component={() => <Portal/>}/>
-            <Route path={LocationHash.community} component={() => <Community user={user}/>}/>
-            <Route path={LocationHash.console} component={() => <Console user={user}/>}/>
+            <MyRoute path={LocationHash.portal} component={Portal}/>
+            <MyRoute path={LocationHash.community} component={Community} user={user}/>
+            <MyRoute path={LocationHash.console} component={Console} user={user}/>
+            <MyRoute path={LocationHash.user} component={User} user={user}/>
         </VerticalLayout>
     );
 };
@@ -34,6 +36,7 @@ export default class App extends React.Component {
         };
 
         this.login = this.login.bind(this);
+        this.logout = this.logout.bind(this);
         if (CookieUtils.get('token')) {
             Service.getUserInfo(((data) => {
                 this.setState({
@@ -69,9 +72,9 @@ export default class App extends React.Component {
             <HashRouter>
                 <div>
                     <Route exact={true} path="/" component={() => <Redirect to={LocationHash.index}/>}/>
-                    <Route path={LocationHash.login} component={() => <Login login={this.login}/>}/>
-                    <Route path={LocationHash.register} component={() => <Register/>}/>
-                    <Route path={LocationHash.index} component={() => <Main user={user} logout={this.logout.bind(this)}/>}/>
+                    <MyRoute path={LocationHash.login} component={Login} login={this.login}/>
+                    <MyRoute path={LocationHash.register} component={Register}/>
+                    <MyRoute path={LocationHash.index} component={Main} user={user} logout={this.logout}/>
                 </div>
             </HashRouter>
         );

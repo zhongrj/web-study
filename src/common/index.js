@@ -21,4 +21,5 @@ export {default as Login} from './components/user/Login';
 export {default as Register} from './components/user/Register';
 export {default as HeaderUser} from './components/user/HeaderUser';
 export {default as Banner} from './components/banner/Banner';
+export {default as MyRoute} from './components/router/MyRoute';
 

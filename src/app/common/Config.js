@@ -14,6 +14,8 @@ const Url = {
     logout               : 'core/user/logout',                                               // 登出
     register             : 'core/user/register',                                             // 注册
     userinfo             : 'core/user/info',                                                 // 获取用户信息
+    modifyInfo           : 'core/user/modifyInfo',                                           // 修改个人资料
+    modifyPassword       : 'core/user/modifyPassword',                                       // 修改密码
     post                 : 'community/post',                                                 // 发贴
     postList             : 'community/postList',                                             // 获取发贴列表
     commentList          : 'community/commentList',                                          // 获取评论列表

@@ -64,6 +64,16 @@ export const Service = {
     getUserInfo: (success) => {
         service(Url.userinfo, {}, success);
     },
+    modifyInfo: (values, success) => {
+        service(Url.modifyInfo, {
+            user: values
+        }, success);
+    },
+    modifyPassword: (values, success) => {
+        service(Url.modifyPassword, {
+            user: values
+        }, success);
+    },
     post: (values, success) => {
         service(Url.post, values, success);
     },

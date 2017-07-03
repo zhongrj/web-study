@@ -311,7 +311,7 @@ class PostForm extends React.Component {
                         {getFieldDecorator('title', {
                             rules: [{required: true, message: '标题不能为空'}],
                         })(
-                            <Input size="large" placeholder="标题" onPressEnter={this.submit}/>
+                            <Input size="large" onPressEnter={this.submit}/>
                         )}
                     </Item>
                     <Item {...formItemLayout} label="内容">

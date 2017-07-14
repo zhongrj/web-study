@@ -53,6 +53,8 @@ let server = http.createServer(function (req, res) {
         _ext,
         _stream;
 
+    let log = new Date() + "   " + _url;
+
     if (_url.indexOf('/static/') > -1) {
         _file = _url.match(/\/static(.*)/)[1];
         _ext = path.extname(_file);
@@ -81,9 +83,14 @@ let server = http.createServer(function (req, res) {
             res.writeHead(404, {"Content-Type": "text/html"});
             res.end("<h1>404 Not Found</h1>");
         }
-    } else {
+    } else if (_url.indexOf("/zzone/") > -1) {
         proxy.web(req, res, {target: 'http://127.0.0.1:8080'});
+    } else {
+        res.writeHead(404, {"Content-Type": "text/html"});
+        res.end("<h1>404 Not Found</h1>");
+        log += "\t\t\tCan't find match"
     }
+    console.log(log);
 
 });
 

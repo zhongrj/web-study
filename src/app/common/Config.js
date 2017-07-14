@@ -8,7 +8,7 @@ export const footer = 'CopyRight © 蠢蛋系统 - Power By zhongrj';
 /**
  * 后台接口url
  */
-const contextPath = '/';
+const contextPath = '/zzone/';
 const Url = {
     login                : 'core/user/login',                                                // 登录
     logout               : 'core/user/logout',                                               // 登出

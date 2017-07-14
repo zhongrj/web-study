@@ -204,6 +204,7 @@ class CommentTab extends React.Component {
                     </div>
                     <div className="zzone-community-bbs-comment-content">
                         {comment.content}
+                        <div style={{textAlign: 'right'}}>{i}楼</div>
                     </div>
                 </div>
             );
